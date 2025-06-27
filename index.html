@@ -1,25 +1,34 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dictionnaire</title>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monèse</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
 </head>
-
 <body>
-    <p class="monese">Monèse</p>
-    <div class="center-wrapper">
-        <div id="mot-container">
-        </div>
-    </div>
-    <button class="button" onclick="afficherMotAleatoire()">Afficher un autre mot</button>
+
+    <header>
+        <h1 class="logo">Monèse</h1>
+        <nav>
+            <a href="#" id="listeBtn">Liste</a>
+            <button id="aleatoireBtn">Aléatoire</button>
+        </nav>
+    </header>
+
+    <main>
+        <section id="aleatoireView" class="view">
+            <div class="mot-container" id="mot-container"></div>
+            <button class="button" id="nouveauMotBtn">J'en veux un autre !</button>
+        </section>
+
+        <section id="listeView" class="view hidden">
+            <ul class="liste-mots" id="liste-mots"></ul>
+        </section>
+    </main>
 
     <script src="generateword.js"></script>
-</body>
 
+</body>
 </html>
