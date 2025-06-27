@@ -1,158 +1,137 @@
-body {
-    font-family: "Roboto Mono", monospace;
-    display: flex;
-        align-content: center;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-    background-color: #f5f5f5;
-    color: #333;
-}
-
-.monese
-{
-    margin: 10px;
-    font-size: x-large;
-}
-
-.stars
-{
+* {
+    box-sizing: border-box;
     margin: 0;
+    padding: 0;
 }
 
-.starsAndTitle {
-    text-align: center;
-    color: #2c3e50;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: xx-large;
-    text-transform: capitalize;
-}
-
-.definition
-{
-    font-size: x-large;
-}
-
-
-th,
-td {
-    padding: 12px 10px;
-    border: 1px solid #ccc;
-    text-align: left;
-    vertical-align: top;
-}
-
-th {
-    background-color: #2c3e50;
-    color: white;
-}
-
-tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
-
-.center-wrapper {
+body {
+    font-family: 'Patrick Hand', cursive;
+    background-color: #fff;
+    color: #000;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    padding: 1rem;
+}
+
+header {
+    width: 100%;
+    max-width: 900px;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 2rem;
+}
+
+nav a {
+    margin-left: 1rem;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+.view {
+    width: 100%;
+    max-width: 600px;
+    margin-top: 2rem;
     text-align: center;
-    padding: 5px;
 }
 
-#mot-container {
-    max-width: 800px;
-    margin-bottom: 10px;
-    word-break: break-word;
-    padding: 5px;
-    background: white;
+.mot-container h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    word-wrap: break-word;
+}
+
+.stars {
+    font-size: 1.5rem;
+    margin-left: 0.5rem;
+    color: #0077cc;
+}
+
+.definition {
+    margin: 1rem 0;
+    font-size: 1.3rem;
+    line-height: 1.5;
+}
+
+.button {
+    margin-top: 2rem;
+    padding: 0.8rem 1.5rem;
+    font-size: 1.2rem;
+    border: 2px solid #4da6ff;
+    background-color: #cce6ff;
+    color: #0077cc;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    padding: 5%;
-}
-
-button {
-    padding: 10px 20px;
-    font-size: 1em;
     cursor: pointer;
-    border: none;
-    border-radius: 8px;
-    background-color: #2c3e50;
-    color: white;
-    transition: background-color 0.3s ease;
-    /* position: absolute;
-    bottom: 10px; */
+    transition: background-color 0.2s ease;
 }
 
-button:hover {
-    background-color: #34495e;
+.button:hover {
+    background-color: #b3d9ff;
 }
 
-@media screen and (max-width: 768px) {
-    table, thead, tbody, th, td, tr {
-        display: block;
-    }
-
-    th {
-        position: sticky;
-        top: 0;
-        z-index: 2;
-    }
-
-    td {
-        padding-left: 50%;
-        position: relative;
-        min-height: 50px;
-    }
-
-    td::before {
-        position: absolute;
-        left: 10px;
-        top: 12px;
-        white-space: nowrap;
-        font-weight: bold;
-    }
-
-    td:nth-of-type(1)::before { content: "Lettre"; }
-    td:nth-of-type(2)::before { content: "Mot"; }
-    td:nth-of-type(3)::before { content: "Définition"; }
-    td:nth-of-type(4)::before { content: "Exemple"; }
-    td:nth-of-type(5)::before { content: "Type"; }
-    td:nth-of-type(6)::before { content: "Difficulté"; }
+.liste-mots {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
-@media screen and (max-width: 430px) {
-    .monese 
-    {
-        margin: 0px;
+.liste-mots li {
+    color: #0077cc;
+    cursor: pointer;
+    margin: 0.5rem 0;
+    font-size: 1.5rem;
+}
+
+.liste-mots li:hover {
+    text-decoration: underline;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .logo {
+        font-size: 1.5rem;
     }
 
-
-    body {
-        font-size: 1.5em;
-        margin: 10px;
+    nav a {
+        font-size: 1rem;
     }
 
-    .starsAndTitle {
-        flex-direction: column;
-        font-size: 1em;
+    .mot-container h1 {
+        font-size: 2rem;
     }
 
-    button {
-        width: 100%;
-        padding: 15px;
-        font-size: 1.2em;
-        scale: 0.7;
+    .stars {
+        font-size: 1.2rem;
     }
 
-    #mot-container {
-        width: 100%;
-        padding: 15px;
+    .definition {
+        font-size: 1.1rem;
     }
 
-    td {
-        padding-left: 45%;
+    .button {
+        font-size: 1rem;
+        padding: 0.6rem 1.2rem;
+    }
+
+    .liste-mots li {
+        font-size: 1.3rem;
     }
 }
