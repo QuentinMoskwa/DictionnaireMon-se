@@ -12,18 +12,19 @@ fetch("dictionnary.json")
     });
 
 function afficherMotAleatoire() {
-    if (dictionnaire.length === 0) return;
-
-    const randomWord = dictionnaire[Math.floor(Math.random() * dictionnaire.length)];
-    const stars = "*".repeat(randomWord.Difficulté);
-
-    const container = document.getElementById("mot-container");
-    container.innerHTML = `
+  if (dictionnaire.length === 0) return;
+  document.getElementById("nouveauMotBtn").style.display = "inline-block";
+  const randomWord =
+    dictionnaire[Math.floor(Math.random() * dictionnaire.length)];
+  const stars = "*".repeat(randomWord.Difficulté);
+  const container = document.getElementById("mot-container");
+  container.innerHTML = `
         <h1>${randomWord.Mot} <span class="stars">${stars}</span></h1>
         <p class="definition">Qui ${randomWord.Définition}</p>
         <p class="definition">${randomWord.Exemple}</p>
     `;
 }
+    
 
 function genererListe() {
     const liste = document.getElementById("liste-mots");
@@ -36,17 +37,21 @@ function genererListe() {
 }
 
 function afficherMotSpecifique(mot) {
-    document.getElementById("aleatoireView").classList.remove("hidden");
-    document.getElementById("listeView").classList.add("hidden");
+  document.getElementById("aleatoireView").classList.remove("hidden");
+  document.getElementById("listeView").classList.add("hidden");
 
-    const stars = "*".repeat(mot.Difficulté);
-    const container = document.getElementById("mot-container");
-    container.innerHTML = `
+  // Masquer le bouton "J'en veux un autre !"
+  document.getElementById("nouveauMotBtn").style.display = "none";
+
+  const stars = "*".repeat(mot.Difficulté);
+  const container = document.getElementById("mot-container");
+  container.innerHTML = `
         <h1>${mot.Mot} <span class="stars">${stars}</span></h1>
         <p class="definition">Qui ${mot.Définition}</p>
         <p class="definition">${mot.Exemple}</p>
     `;
 }
+
 
 document.getElementById("listeBtn").onclick = () => {
     document.getElementById("aleatoireView").classList.add("hidden");
@@ -54,6 +59,11 @@ document.getElementById("listeBtn").onclick = () => {
 };
 
 document.getElementById("aleatoireBtn").onclick = () => {
-    document.getElementById("aleatoireView").classList.remove("hidden");
-    document.getElementById("listeView").classList.add("hidden");
+  document.getElementById("aleatoireView").classList.remove("hidden");
+  document.getElementById("listeView").classList.add("hidden");
+  afficherMotAleatoire(); // nouveau mot
+};
+
+document.getElementById("nouveauMotBtn").onclick = () => {
+  afficherMotAleatoire(); // juste un nouveau mot, pas besoin de changer de vue
 };
