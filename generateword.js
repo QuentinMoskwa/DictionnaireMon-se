@@ -15,9 +15,9 @@ function afficherMotAleatoire() {
                     <h1>${randomWord.Mot}</h1>
                     <p class="stars">${stars}</p>
                 </div>
-                <p><strong>Définition :</strong> ${randomWord.Définition}</p>
-                <p><strong>Exemple :</strong> ${randomWord.Exemple}</p>
-                <p><strong>Type :</strong> ${randomWord.Type}</p>
+                <p class="definition"><strong>Définition :</strong> ${randomWord.Définition}</p>
+                <p class="definition"><strong>Exemple :</strong> ${randomWord.Exemple}</p>
+                <p class="definition"><strong>Type :</strong> ${randomWord.Type}</p>
             `;
     })
     .catch((error) => {
