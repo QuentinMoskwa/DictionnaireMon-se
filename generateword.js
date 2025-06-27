@@ -27,14 +27,25 @@ function afficherMotAleatoire() {
     
 
 function genererListe() {
-    const liste = document.getElementById("liste-mots");
-    dictionnaire.forEach(mot => {
-        const li = document.createElement("li");
-        li.textContent = mot.Mot;
-        li.onclick = () => afficherMotSpecifique(mot);
-        liste.appendChild(li);
-    });
+  const liste = document.getElementById("liste-mots");
+
+  // Vider la liste si jamais elle a déjà été générée
+  liste.innerHTML = "";
+
+  // Trier par ordre alphabétique (insensible à la casse)
+  const motsTries = dictionnaire.slice().sort((a, b) => {
+    return a.Mot.localeCompare(b.Mot, "fr", { sensitivity: "base" });
+  });
+
+  // Créer les éléments <li>
+  motsTries.forEach((mot) => {
+    const li = document.createElement("li");
+    li.textContent = mot.Mot;
+    li.onclick = () => afficherMotSpecifique(mot);
+    liste.appendChild(li);
+  });
 }
+
 
 function afficherMotSpecifique(mot) {
   document.getElementById("aleatoireView").classList.remove("hidden");
