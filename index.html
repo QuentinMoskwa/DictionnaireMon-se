@@ -6,13 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dictionnaire</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
 </head>
 
 <body>
+    <p class="monese">Monèse</p>
     <div class="center-wrapper">
-        <div id="mot-container"></div>
-        <button onclick="afficherMotAleatoire()">Afficher un autre mot</button>
+        <div id="mot-container">
+        </div>
     </div>
+    <button class="button" onclick="afficherMotAleatoire()">Afficher un autre mot</button>
 
     <script src="generateword.js"></script>
 </body>
