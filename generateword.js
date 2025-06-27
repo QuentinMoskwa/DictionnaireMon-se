@@ -20,7 +20,7 @@ function afficherMotAleatoire() {
   const container = document.getElementById("mot-container");
   container.innerHTML = `
         <h1>${randomWord.Mot} <span class="stars">${stars}</span></h1>
-        <p class="definition">Qui ${randomWord.Définition}</p>
+        <p class="definition">${randomWord.Définition}</p>
         <p class="definition">${randomWord.Exemple}</p>
     `;
 }
@@ -47,7 +47,7 @@ function afficherMotSpecifique(mot) {
   const container = document.getElementById("mot-container");
   container.innerHTML = `
         <h1>${mot.Mot} <span class="stars">${stars}</span></h1>
-        <p class="definition">Qui ${mot.Définition}</p>
+        <p class="definition">${mot.Définition}</p>
         <p class="definition">${mot.Exemple}</p>
     `;
 }
