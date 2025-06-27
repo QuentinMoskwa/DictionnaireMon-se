@@ -3,7 +3,7 @@ body {
     margin: 20px;
     background-color: #f5f5f5;
     color: #333;
-    font-size: 3em;
+    font-size: 2.75em;
 }
 
 .starsAndTitle {
@@ -13,7 +13,6 @@ body {
     justify-content: center;
     align-items: center;
     text-transform: capitalize;
-    /* font-size: 2em; */
 }
 
 table {
@@ -40,61 +39,6 @@ tr:nth-child(even) {
     background-color: #f9f9f9;
 }
 
-@media screen and (max-width: 768px) {
-
-    table,
-    thead,
-    tbody,
-    th,
-    td,
-    tr {
-        display: block;
-    }
-
-    th {
-        position: sticky;
-        top: 0;
-        z-index: 2;
-    }
-
-    td {
-        padding-left: 50%;
-        position: relative;
-    }
-
-    td::before {
-        position: absolute;
-        left: 10px;
-        top: 12px;
-        white-space: nowrap;
-        font-weight: bold;
-    }
-
-    td:nth-of-type(1)::before {
-        content: "Lettre";
-    }
-
-    td:nth-of-type(2)::before {
-        content: "Mot";
-    }
-
-    td:nth-of-type(3)::before {
-        content: "Définition";
-    }
-
-    td:nth-of-type(4)::before {
-        content: "Exemple";
-    }
-
-    td:nth-of-type(5)::before {
-        content: "Type";
-    }
-
-    td:nth-of-type(6)::before {
-        content: "Difficulté";
-    }
-}
-
 .center-wrapper {
     display: flex;
     flex-direction: column;
@@ -102,11 +46,17 @@ tr:nth-child(even) {
     justify-content: center;
     text-align: center;
     min-height: 100vh;
+    padding: 5px;
 }
 
 #mot-container {
     max-width: 800px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+    word-break: break-word;
+    padding: 5px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
 button {
@@ -122,4 +72,64 @@ button {
 
 button:hover {
     background-color: #34495e;
+}
+
+@media screen and (max-width: 768px) {
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+
+    th {
+        position: sticky;
+        top: 0;
+        z-index: 2;
+    }
+
+    td {
+        padding-left: 50%;
+        position: relative;
+        min-height: 50px;
+    }
+
+    td::before {
+        position: absolute;
+        left: 10px;
+        top: 12px;
+        white-space: nowrap;
+        font-weight: bold;
+    }
+
+    td:nth-of-type(1)::before { content: "Lettre"; }
+    td:nth-of-type(2)::before { content: "Mot"; }
+    td:nth-of-type(3)::before { content: "Définition"; }
+    td:nth-of-type(4)::before { content: "Exemple"; }
+    td:nth-of-type(5)::before { content: "Type"; }
+    td:nth-of-type(6)::before { content: "Difficulté"; }
+}
+
+@media screen and (max-width: 430px) {
+    body {
+        font-size: 1.5em;
+        margin: 10px;
+    }
+
+    .starsAndTitle {
+        flex-direction: column;
+        font-size: 1.2em;
+    }
+
+    button {
+        width: 100%;
+        padding: 15px;
+        font-size: 1.2em;
+    }
+
+    #mot-container {
+        width: 100%;
+        padding: 15px;
+    }
+
+    td {
+        padding-left: 45%;
+    }
 }
