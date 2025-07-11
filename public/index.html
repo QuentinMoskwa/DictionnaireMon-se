@@ -10,7 +10,7 @@
 <body>
 
     <header>
-        <h1 class="logo">Monèse</h1>
+        <h1 class="logo"><a href="/" id="homeBtn">Monèse</a></h1>
         <nav>
             <a href="#" id="listeBtn">Liste</a>
             <button id="aleatoireBtn">Aléatoire</button>
@@ -18,7 +18,12 @@
     </header>
 
     <main>
-        <section id="aleatoireView" class="view">
+        <section id="accueilView" class="view">
+            <h2 class="titreTop10">Top 10 des mots favoris</h2>
+            <ul id="top10Container"></ul>
+        </section>
+
+        <section id="aleatoireView" class="view hidden">
             <div class="mot-container" id="mot-container"></div>
             <button class="button" id="nouveauMotBtn">J'en veux un autre !</button>
         </section>
