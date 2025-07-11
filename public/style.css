@@ -104,6 +104,23 @@ nav a:hover {
     display: none;
 }
 
+.fav-btn{
+    border:none;
+    background: none;
+}
+
+.fav-btn svg path {
+    fill: none;
+    stroke: #e63946;
+    stroke-width: 2;
+    transition: fill 0.3s, stroke 0.3s;
+}
+
+.fav-btn.favori svg path {
+    fill: #e63946;
+    stroke: none;
+}
+
 /* Responsive Design */
 @media (max-width: 600px) {
     .logo {
