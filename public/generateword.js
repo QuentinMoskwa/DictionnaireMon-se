@@ -7,6 +7,16 @@ const coeurSVG = `
              6.86-8.55 11.54L12 21.35z"/>
   </svg>
 `;
+let filtreFavorisActif = false;
+
+const btnFiltre = document.getElementById("filtreFavorisBtn");
+
+btnFiltre.addEventListener("click", () => {
+  filtreFavorisActif = !filtreFavorisActif;
+  btnFiltre.classList.toggle("favori", filtreFavorisActif);
+  btnFiltre.setAttribute("aria-pressed", filtreFavorisActif);
+  genererListe();
+});
 
 function getFavoris() {
   return JSON.parse(localStorage.getItem("favoris")) || [];
@@ -71,8 +81,8 @@ function afficherMotAleatoire() {
 
 function genererListe() {
   const liste = document.getElementById("liste-mots");
-  const afficherFavorisSeulement =
-    document.getElementById("filtreFavoris").checked;
+  const afficherFavorisSeulement = filtreFavorisActif;
+
   liste.innerHTML = "";
 
   const favoris = getFavoris();
@@ -133,10 +143,6 @@ document.getElementById("nouveauMotBtn").onclick = () => {
   console.log("Nouveau mot demandé");
   afficherMotAleatoire();
 };
-
-document
-  .getElementById("filtreFavoris")
-  .addEventListener("change", genererListe);
 
 function afficherMotDepuisURL() {
   const path = window.location.pathname.slice(1);
