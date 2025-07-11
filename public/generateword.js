@@ -25,13 +25,29 @@ function getFavoris() {
 function toggleFavori(mot) {
   const favoris = getFavoris();
   const index = favoris.indexOf(mot);
-  if (index === -1) {
+  const ajout = index === -1;
+
+  if (ajout) {
     favoris.push(mot);
+    // Incrémenter le compteur sur le serveur
+    fetch("/api/favori", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ mot: mot, action: "increment" }),
+    });
   } else {
     favoris.splice(index, 1);
+    // Décrémenter le compteur sur le serveur
+    fetch("/api/favori", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ mot: mot, action: "decrement" }),
+    });
   }
+
   localStorage.setItem("favoris", JSON.stringify(favoris));
 }
+
 
 function estFavori(mot) {
   return getFavoris().includes(mot);
@@ -43,9 +59,7 @@ fetch("dictionnary.json")
   .then((response) => response.json())
   .then((data) => {
     dictionnaire = data;
-    afficherMotDepuisURL();
-    afficherMotAleatoire();
-    genererListe();
+    afficherTop10();
   })
   .catch((error) => {
     console.error("Erreur lors du chargement du dictionnaire :", error);
@@ -55,7 +69,7 @@ function afficherMotAleatoire() {
   if (dictionnaire.length === 0) return;
 
   document.getElementById("nouveauMotBtn").style.display = "inline-block";
-
+  document.getElementById("accueilView").classList.add("hidden");
   motActuel = dictionnaire[Math.floor(Math.random() * dictionnaire.length)];
   const stars = "*".repeat(motActuel.Difficulté);
   const container = document.getElementById("mot-container");
@@ -102,7 +116,7 @@ function genererListe() {
 function afficherMotSpecifique(mot) {
   document.getElementById("aleatoireView").classList.remove("hidden");
   document.getElementById("listeView").classList.add("hidden");
-
+  document.getElementById("accueilView").classList.add("hidden");
   document.getElementById("nouveauMotBtn").style.display = "none";
 
   const stars = "*".repeat(mot.Difficulté);
@@ -129,6 +143,7 @@ function afficherMotSpecifique(mot) {
 document.getElementById("listeBtn").onclick = () => {
   document.getElementById("aleatoireView").classList.add("hidden");
   document.getElementById("listeView").classList.remove("hidden");
+  document.getElementById("accueilView").classList.add("hidden");
   window.history.pushState({}, "", "/liste");
   genererListe();
 };
@@ -136,6 +151,7 @@ document.getElementById("listeBtn").onclick = () => {
 document.getElementById("aleatoireBtn").onclick = () => {
   document.getElementById("aleatoireView").classList.remove("hidden");
   document.getElementById("listeView").classList.add("hidden");
+  document.getElementById("accueilView").classList.add("hidden");
   afficherMotAleatoire();
 };
 
@@ -157,3 +173,39 @@ function afficherMotDepuisURL() {
     console.warn("Mot introuvable dans le dictionnaire :", path);
   }
 }
+
+function afficherTop10() {
+  document.getElementById("aleatoireView").classList.add("hidden");
+  document.getElementById("listeView").classList.add("hidden");
+  document.getElementById("nouveauMotBtn").style.display = "none";
+
+  fetch("top10.json")
+    .then((response) => response.json())
+    .then((data) => {
+      const top10Container = document.getElementById("top10Container");
+      top10Container.innerHTML = "";
+
+      const ol = document.createElement("ol"); // Liste ordonnée
+
+      data.forEach((item) => {
+        const li = document.createElement("li");
+        li.innerHTML = `
+          <span class="top-mot">${item.mot}</span>
+          <span class="top-compteur">❤️ ${item.count}</span>
+        `;
+        li.onclick = () => {
+          const mot = dictionnaire.find(
+            (entry) => entry.Mot.toLowerCase() === item.mot.toLowerCase()
+          );
+          if (mot) afficherMotSpecifique(mot);
+        };
+        ol.appendChild(li);
+      });
+
+      top10Container.appendChild(ol);
+    })
+    .catch((error) => {
+      console.error("Erreur lors du chargement du top 10 :", error);
+    });
+}
+
