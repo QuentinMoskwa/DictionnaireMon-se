@@ -104,6 +104,11 @@ nav a:hover {
     display: none;
 }
 
+#filtreFavorisBtn
+{
+    margin-bottom: 20px;
+}
+
 .fav-btn{
     border:none;
     background: none;
