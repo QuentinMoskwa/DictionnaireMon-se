@@ -72,6 +72,7 @@ function afficherMotSpecifique(mot) {
 document.getElementById("listeBtn").onclick = () => {
     document.getElementById("aleatoireView").classList.add("hidden");
     document.getElementById("listeView").classList.remove("hidden");
+    window.history.pushState({}, "", "/liste");
 };
 
 document.getElementById("aleatoireBtn").onclick = () => {
